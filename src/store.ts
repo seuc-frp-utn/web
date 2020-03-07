@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loading: false,
+    signIn: false,
     notification: {
       message: '',
       color: 'info',
@@ -16,6 +17,9 @@ export default new Vuex.Store({
   getters: {
     isLoading(state) {
       return state.loading;
+    },
+    isSignIn(state) {
+      return state.signIn;
     },
     getNotification(state) {
       return state.notification;
