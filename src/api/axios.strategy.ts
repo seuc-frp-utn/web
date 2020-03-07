@@ -13,7 +13,7 @@ export class AxiosStrategy<T> implements Strategy<T> {
 
   public async getAll(endpoint: string): Promise<T[]> {
     return new Promise<T[]>((resolve, reject) => {
-      this.instance.get<T[]>(`/${endpoint}`)
+      this.instance.get<T[]>(`/${endpoint}/`)
       .then((response: AxiosResponse<T[]>) => {
         resolve(response.data);
       })
@@ -25,7 +25,7 @@ export class AxiosStrategy<T> implements Strategy<T> {
 
   public async get(endpoint: string, id: number): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.get<T>(`/${endpoint}/${id}`)
+      this.instance.get<T>(`/${endpoint}/${id}/`)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })
@@ -37,7 +37,7 @@ export class AxiosStrategy<T> implements Strategy<T> {
 
   public async post(endpoint: string, data: any): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.post<T>(`/${endpoint}`, data)
+      this.instance.post<T>(`/${endpoint}/`, data)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })
@@ -49,7 +49,7 @@ export class AxiosStrategy<T> implements Strategy<T> {
 
   public async patch(endpoint: string, id: number, data: any): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.patch<T>(`/${endpoint}/${id}`, data)
+      this.instance.patch<T>(`/${endpoint}/${id}/`, data)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })
@@ -61,7 +61,7 @@ export class AxiosStrategy<T> implements Strategy<T> {
 
   public async remove(endpoint: string, id: number): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.delete<T>(`/${endpoint}/${id}`)
+      this.instance.delete<T>(`/${endpoint}/${id}/`)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })

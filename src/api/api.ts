@@ -33,7 +33,6 @@ export class API {
   private registerStrategies() {
     this.resources = {
       courses: new AxiosStrategy<Course>(),
-      categories: new AxiosStrategy<Category>(),
     };
   }
 }
