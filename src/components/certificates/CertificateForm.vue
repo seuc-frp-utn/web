@@ -9,8 +9,8 @@
   >
     <template slot="fields">
       <v-text-field
-        v-model="slug"
-        :counter="10"
+        v-model="token"
+        :counter="8"
         label="Token del certificado"
         required
       ></v-text-field>
@@ -27,14 +27,14 @@ export default Vue.extend({
     'u-form': Form,
   },
   data: () => ({
-    slug: '',
+    token: '',
   }),
   methods: {
     clear() {
-      this.slug = '';
+      this.token = '';
     },
     search() {
-      this.$router.push('/certificados/' + this.slug);
+      this.$router.push('/certificados/' + this.token);
     },
   },
 });

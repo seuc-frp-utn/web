@@ -2,10 +2,11 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Contact from './views/Contact.vue';
-import Education from './views/Education.vue';
+import Courses from './views/Courses.vue';
 import Certificate from './views/Certificate.vue';
 import Error404 from './views/Error404.vue';
 import CertificateForm from './components/certificates/CertificateForm.vue';
+import CertificateResult from './components/certificates/CertificateResult.vue';
 import Payments from './views/Payments.vue';
 
 Vue.use(Router);
@@ -21,15 +22,19 @@ export default new Router({
     },
     {
       path: '/formacion',
-      name: 'education',
-      component: Education,
+      name: 'courses',
+      component: Courses,
     },
     {
       path: '/certificados',
       component: Certificate,
       children: [
         {
-          path: '/',
+          path: ':token',
+          component: CertificateResult,
+        },
+        {
+          path: '',
           component: CertificateForm,
         },
       ],

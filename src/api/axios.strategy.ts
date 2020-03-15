@@ -4,11 +4,12 @@ import store from '../store';
 
 export class AxiosStrategy<T> implements Strategy<T> {
   private readonly instance: AxiosInstance;
-  constructor() {
-    this.instance = axios.create();
-    this.instance.defaults.baseURL = process.env.VUE_APP_API_IP;
-    this.instance.defaults.headers.post['Content-Type'] = 'application/json';
-    this.instance.defaults.timeout = 2500;
+  constructor(instance: AxiosInstance) {
+    this.instance = instance;
+  }
+
+  public getInstance(): AxiosInstance {
+    return this.instance;
   }
 
   public async getAll(endpoint: string): Promise<T[]> {
@@ -23,9 +24,9 @@ export class AxiosStrategy<T> implements Strategy<T> {
     });
   }
 
-  public async get(endpoint: string, id: number): Promise<T> {
+  public async get(endpoint: string, uuid: string): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.get<T>(`/${endpoint}/${id}/`)
+      this.instance.get<T>(`/${endpoint}/${uuid}/`)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })
@@ -47,9 +48,9 @@ export class AxiosStrategy<T> implements Strategy<T> {
     });
   }
 
-  public async patch(endpoint: string, id: number, data: any): Promise<T> {
+  public async put(endpoint: string, uuid: string, data: any): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.patch<T>(`/${endpoint}/${id}/`, data)
+      this.instance.put<T>(`/${endpoint}/${uuid}/`, data)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })
@@ -59,9 +60,9 @@ export class AxiosStrategy<T> implements Strategy<T> {
     });
   }
 
-  public async remove(endpoint: string, id: number): Promise<T> {
+  public async remove(endpoint: string, uuid: string): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      this.instance.delete<T>(`/${endpoint}/${id}/`)
+      this.instance.delete<T>(`/${endpoint}/${uuid}/`)
       .then((response: AxiosResponse<T>) => {
         resolve(response.data);
       })

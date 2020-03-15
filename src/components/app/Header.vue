@@ -31,7 +31,7 @@ export default Vue.extend({
       links: [
         { path: '/', label: 'Inicio', icon: 'home' },
         { path: '/formacion', label: 'Formación', icon: 'animation' },
-        // { path: '/certificados', label: 'Certificados', icon: 'file-document-box' },
+        { path: '/certificados', label: 'Certificados', icon: 'file-document-box' },
         // { path: '/pagos', label: 'Pagos', icon: 'account-box-multiple' },
         // { path: '/contacto', label: 'Contacto', icon: 'phone' },
       ],
