@@ -1,7 +1,6 @@
 import { Course } from '@/models/course.model';
 import { AxiosStrategy } from './axios.strategy';
 import { Strategy } from './strategy';
-import { Category } from '@/models/category.model';
 
 export class API {
   private resources: Record<string, Strategy<any>>;
