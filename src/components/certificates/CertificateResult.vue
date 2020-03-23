@@ -44,25 +44,61 @@ import { User } from '@/models/user.model';
 import store from '@/store';
 import api from '@/api';
 import { Diploma } from '../../models/diploma.model';
+
+interface Data {
+  token?: string;
+  course?: Course,
+  dean?: User,
+  secretary?: User,
+  teacher?: User,
+  student?: User,
+}
+
 export default Vue.extend({
-  data() {
+  data(): Data {
     return {
       token: this.$route.params.token,
-      course: Object as () => Course,
-      dean: Object as () => User,
-      secretary: Object as () => User,
-      teacher: Object as () => User,
-      student: Object as () => User,
+      course: undefined,
+      dean: undefined,
+      secretary: undefined,
+      teacher: undefined,
+      student: undefined,
     }
   },
   beforeMount() {
     store.dispatch('setLoadingState');
   },
   mounted() {
+    api.getInstance().get<Diploma>(`diplomas/${this.token}/token`)
+    .then(async (response) => {
+      try {
+        this.course = await api.getResource<Course>("courses", response.data.course);
+        this.dean = await api.getResource<User>("users", response.data.dean);
+        this.secretary = await api.getResource<User>("users", response.data.secretary);
+        this.teacher = await api.getResource<User>("users", response.data.teacher);
+        this.student = await api.getResource<User>("users", response.data.student);
+      }
+      catch(err) {
+        store.dispatch('notify', {
+          message: err,
+          color: 'error',
+        });
+      }
+      finally {
+        store.dispatch('unsetLoadingState');
+      }
+    })
+    .catch((reason: string) => {
+      store.dispatch('notify', {
+        message: reason,
+        color: 'error',
+      });
+      store.dispatch('unsetLoadingState');
+      this.$router.back();
+    });
   },
   beforeDestroy() {
     store.dispatch('unsetLoadingState');
   },
 })
 </script>
-

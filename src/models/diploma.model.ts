@@ -5,4 +5,5 @@ export class Diploma {
   public dean: string;
   public secretary: string;
   public teacher: string;
+  public student: string;
 }

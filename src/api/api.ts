@@ -16,7 +16,7 @@ export class API {
     this.registerStrategies();
   }
 
-  public async getInstance(): Promise<AxiosInstance> {
+  public getInstance(): AxiosInstance {
     return this.httpClient;
   }
 
