@@ -33,10 +33,8 @@ export default Vue.extend({
       courses: [],
     };
   },
-  beforeMount() {
+  created() {
     store.dispatch('setLoadingState');
-  },
-  mounted() {
     api.getAllResources<Course>('courses')
     .then((result) => {
       this.courses = result as Course[];

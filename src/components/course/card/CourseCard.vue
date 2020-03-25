@@ -1,6 +1,6 @@
 <template>
   <v-card class="primary" dark height="100%">
-    <v-img :src="course.image"></v-img>
+    <v-img :src="course.image" :height="250"></v-img>
     <v-card-title height="100%">
       {{course.name}}
     </v-card-title>

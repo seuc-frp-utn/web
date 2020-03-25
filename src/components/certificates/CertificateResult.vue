@@ -1,39 +1,6 @@
 <template>
   <v-row wrap align="center" justify="center">
-    <v-card class="pa-5">
-      <v-card-text>
-        <v-row>
-          <v-col></v-col>
-        </v-row>
-        <hr>
-        <v-row>
-          <v-col><h1 class="title">Certificado de asistencia</h1></v-col>
-          <v-col>
-            <p>
-              Este documento certifica que {{student.firstName}} {{student.lastName}}, con DNI {{student.dni}}, 
-              ha completado con éxito {{course.hours}} horas del curso {{course.name}} en modalidad presencial.
-            </p>
-            <p>
-              Este documento ha sido en las instalaciones de la Universidad Tecnológica Nacional - Facultad Regional Paraná.
-            </p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col id="dean">
-            <h2>{{dean.firstName}} {{dean.lastName}}</h2>
-            <h5>Decano</h5>
-          </v-col>
-          <v-col id="secretary">
-            <h2>{{secretary.firstName}} {{secretary.lastName}}</h2>
-            <h5>Secretario de Extensión Universitaria y Cultura</h5>
-          </v-col>
-          <v-col id="teacher">
-            <h2>{{teacher.firstName}} {{teacher.lastName}}</h2>
-            <h5>Capacitador</h5>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
+    <u-certificate-card :student="student" :course="course" :dean="dean" :secretary="secretary" :teacher="teacher"></u-certificate-card>
   </v-row>
 </template>
 
@@ -44,20 +11,26 @@ import { User } from '@/models/user.model';
 import store from '@/store';
 import api from '@/api';
 import { Diploma } from '../../models/diploma.model';
+import CertificateCard from '@/components/certificates/CertificateCard.vue';
 
 interface Data {
   token?: string;
-  course?: Course,
-  dean?: User,
-  secretary?: User,
-  teacher?: User,
-  student?: User,
+  diploma?: Diploma;
+  course?: Course;
+  dean?: User;
+  secretary?: User;
+  teacher?: User;
+  student?: User;
 }
 
 export default Vue.extend({
+  components: {
+    'u-certificate-card': CertificateCard,
+  },
   data(): Data {
     return {
       token: this.$route.params.token,
+      diploma: undefined,
       course: undefined,
       dean: undefined,
       secretary: undefined,
@@ -65,27 +38,20 @@ export default Vue.extend({
       student: undefined,
     }
   },
-  beforeMount() {
+  created() {
     store.dispatch('setLoadingState');
-  },
-  mounted() {
     api.getInstance().get<Diploma>(`diplomas/${this.token}/token`)
-    .then(async (response) => {
+    .then((response) => {
+      this.diploma = response.data;
       try {
-        this.course = await api.getResource<Course>("courses", response.data.course);
-        this.dean = await api.getResource<User>("users", response.data.dean);
-        this.secretary = await api.getResource<User>("users", response.data.secretary);
-        this.teacher = await api.getResource<User>("users", response.data.teacher);
-        this.student = await api.getResource<User>("users", response.data.student);
-      }
-      catch(err) {
+        this.loadData();
+      } catch(reason) {
         store.dispatch('notify', {
-          message: err,
+          message: reason,
           color: 'error',
         });
-      }
-      finally {
         store.dispatch('unsetLoadingState');
+        this.$router.back();
       }
     })
     .catch((reason: string) => {
@@ -97,8 +63,39 @@ export default Vue.extend({
       this.$router.back();
     });
   },
+  mounted() {
+    store.dispatch('unsetLoadingState');
+  },
   beforeDestroy() {
     store.dispatch('unsetLoadingState');
   },
+  methods: {
+    loadData() {
+      api.getResource<Course>("courses", this.diploma!.course)
+      .then((response) => {
+        this.course = response;
+      }).catch((err) => { throw new Error(err) });
+
+      api.getResource<User>("users",  this.diploma!.dean)
+      .then((response) => {
+        this.dean = response;
+      }).catch((err) => { throw new Error(err) });
+
+      api.getResource<User>("users",  this.diploma!.secretary)
+      .then((response) => {
+        this.secretary = response;
+      }).catch((err) => { throw new Error(err) });
+
+      api.getResource<User>("users",  this.diploma!.teacher)
+      .then((response) => {
+        this.teacher = response;
+      }).catch((err) => { throw new Error(err) });
+
+      api.getResource<User>("users",  this.diploma!.student)
+      .then((response) => {
+        this.student = response;
+      }).catch((err) => { throw new Error(err) });
+    }
+  }
 })
 </script>

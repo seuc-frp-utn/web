@@ -1,8 +1,10 @@
 import { Course } from '@/models/course.model';
 import { AxiosStrategy } from './axios.strategy';
 import { Strategy } from './strategy';
-import { AxiosInstance } from 'axios';
+import Axios, { AxiosInstance } from 'axios';
 import axios from 'axios';
+import { User } from '@/models/user.model';
+import { Diploma } from '@/models/diploma.model';
 
 export class API {
   private httpClient: AxiosInstance;
@@ -43,6 +45,8 @@ export class API {
   private registerStrategies() {
     this.resources = {
       courses: new AxiosStrategy<Course>(this.httpClient),
+      users: new AxiosStrategy<User>(this.httpClient),
+      diplomas: new AxiosStrategy<Diploma>(this.httpClient),
     };
   }
 }
