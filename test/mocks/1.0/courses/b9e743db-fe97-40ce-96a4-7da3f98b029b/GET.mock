@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+{
+    "ID": 1,
+    "CreatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "UpdatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "DeletedAt": null,
+    "uuid": "b9e743db-fe97-40ce-96a4-7da3f98b029b",
+    "name": "Lengua francesa 1",
+    "description": "Lengua y cultura francesa para principiantes. Nivel 1. Módulo 1. Horarios: Miércoles de 14 a 16hs",
+    "image": "https://i.imgur.com/NrVU71j.png",
+    "started": true,
+    "finished": false,
+    "hours": 32,
+    "price": 7500,
+    "classes": 16,
+    "link": "https://marcos.huck.com.ar",
+    "teacher": "12345"
+}

@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+[
+  {
+    "ID": 1,
+    "CreatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "UpdatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "DeletedAt": null,
+    "uuid": "b9e743db-fe97-40ce-96a4-7da3f98b029b",
+    "name": "Lengua francesa 1",
+    "description": "Lengua y cultura francesa para principiantes. Nivel 1. Módulo 1. Horarios: Miércoles de 14 a 16hs",
+    "image": "https://i.imgur.com/NrVU71j.png",
+    "started": true,
+    "finished": false,
+    "hours": 32,
+    "price": 7500,
+    "classes": 16,
+    "link": "https://marcos.huck.com.ar",
+    "teacher": "7aed79ab-2b1a-452f-8536-8a180bb7c2fa"
+  },
+  {
+    "ID": 2,
+    "CreatedAt": "2020-03-15T19:37:14.243971284-03:00",
+    "UpdatedAt": "2020-03-15T19:37:14.243971284-03:00",
+    "DeletedAt": null,
+    "uuid": "2215d9ff-2039-4662-9515-e1d4ad85c0a4",
+    "name": "Lengua francesa 1",
+    "description": "Lengua y cultura francesa para principiantes. Nivel 1. Módulo 1. Horarios: Miércoles de 14 a 16hs",
+    "image": "https://i.imgur.com/IouDlRo.png?1",
+    "started": true,
+    "finished": false,
+    "hours": 32,
+    "price": 7500,
+    "classes": 16,
+    "link": "https://marcos.huck.com.ar",
+    "teacher": "7aed79ab-2b1a-452f-8536-8a180bb7c2fa"
+  },
+  {
+    "ID": 3,
+    "CreatedAt": "2020-03-15T19:39:11.934107878-03:00",
+    "UpdatedAt": "2020-03-15T19:39:11.934107878-03:00",
+    "DeletedAt": null,
+    "uuid": "e657001c-26b1-4534-9e3b-2b6d7606c9b7",
+    "name": "Lengua italiana 1",
+    "description": "Lengua y cultura italiana para principiantes. Nivel 1. Módulo 1. Horarios: Miércoles de 14 a 16hs",
+    "image": "https://i.imgur.com/ISXxx0r.png?1",
+    "started": true,
+    "finished": false,
+    "hours": 32,
+    "price": 7500,
+    "classes": 16,
+    "link": "https://marcos.huck.com.ar",
+    "teacher": "7aed79ab-2b1a-452f-8536-8a180bb7c2fa"
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "ID": 1,
+    "CreatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "UpdatedAt": "2020-03-15T19:26:55.876786809-03:00",
+    "DeletedAt": null,
+    "uuid": "1",
+    "token": "abcdefgh",
+    "course": "b9e743db-fe97-40ce-96a4-7da3f98b029b",
+    "dean": "5678",
+    "secretary": "1234",
+    "teacher": "91011",
+    "student": "121314"
+  }
+]
