@@ -6,8 +6,16 @@
     Puede comunicarse con nosotros a través de los números telefónicos y correos electrónicos dispuestos a continuación."
   >
     <v-row>
-      <v-col xs="12" md="6">
-        <router-view></router-view>
+      <v-col>
+        <u-map>
+          <v-container>
+            <v-row>
+              <v-col sm="5" lg="4">
+                <u-map-card></u-map-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </u-map>
       </v-col>
     </v-row>
   </u-page>
@@ -16,10 +24,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import Page from '@/templates/Page.vue';
+import MapC from '@/components/contact/map/Map.vue';
+import MapCard from '@/components/contact/map-card/MapCard.vue';
 export default Vue.extend({
   name: 'Contact',
   components: {
     'u-page': Page,
+    'u-map': MapC,
+    'u-map-card': MapCard,
   },
 });
 </script>

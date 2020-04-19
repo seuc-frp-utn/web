@@ -9,17 +9,17 @@
       <hr>
       <v-row>
         <v-col>
-          <h1 class="title">Certificado de asistencia</h1>
+          <h1 class="title">Certificado</h1>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <p>
-            Este documento certifica que {{student.firstName}} {{student.lastName}}, con DNI {{student.dni}}, 
-            ha completado con éxito {{course.hours}} horas del curso {{course.name}} en modalidad presencial.
+            La secretaría de Extensión Universitaria y Cultura de la Universidad Tecnológica Nacional, Facultad Regional Paraná, certifica que {{student.firstName}} {{student.lastName}}, con DNI {{student.dni}}, 
+            ha completado con éxito {{course.hours}} horas del curso {{course.name}}.
           </p>
           <p>
-            Este documento ha sido expedido en las instalaciones de la Universidad Tecnológica Nacional - Facultad Regional Paraná.
+            <b>Código de identificación:</b> {{token}}
           </p>
         </v-col>
       </v-row>
@@ -48,6 +48,7 @@ import { User } from '@/models/user.model';
 export default Vue.extend({
   name: 'CertificateCard',
   props: {
+    token: String,
     student: Object as () => User,
     course: Object as () => Course,
     dean: Object as () => User,
@@ -58,6 +59,6 @@ export default Vue.extend({
     return {
       logo: require('@/assets/logo.png'),
     };
-  }
+  },
 });
 </script>

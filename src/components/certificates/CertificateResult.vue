@@ -1,6 +1,6 @@
 <template>
   <v-row wrap align="center" justify="center">
-    <u-certificate-card :student="student" :course="course" :dean="dean" :secretary="secretary" :teacher="teacher"></u-certificate-card>
+    <u-certificate-card :token="token" :student="student" :course="course" :dean="dean" :secretary="secretary" :teacher="teacher"></u-certificate-card>
   </v-row>
 </template>
 
@@ -36,7 +36,7 @@ export default Vue.extend({
       secretary: undefined,
       teacher: undefined,
       student: undefined,
-    }
+    };
   },
   created() {
     store.dispatch('setLoadingState');
@@ -45,7 +45,7 @@ export default Vue.extend({
       this.diploma = response.data;
       try {
         this.loadData();
-      } catch(reason) {
+      } catch (reason) {
         store.dispatch('notify', {
           message: reason,
           color: 'error',
@@ -71,31 +71,31 @@ export default Vue.extend({
   },
   methods: {
     loadData() {
-      api.getResource<Course>("courses", this.diploma!.course)
+      api.getResource<Course>('courses', this.diploma!.course)
       .then((response) => {
         this.course = response;
-      }).catch((err) => { throw new Error(err) });
+      }).catch((err) => { throw new Error(err); });
 
-      api.getResource<User>("users",  this.diploma!.dean)
+      api.getResource<User>('users',  this.diploma!.dean)
       .then((response) => {
         this.dean = response;
-      }).catch((err) => { throw new Error(err) });
+      }).catch((err) => { throw new Error(err); });
 
-      api.getResource<User>("users",  this.diploma!.secretary)
+      api.getResource<User>('users',  this.diploma!.secretary)
       .then((response) => {
         this.secretary = response;
-      }).catch((err) => { throw new Error(err) });
+      }).catch((err) => { throw new Error(err); });
 
-      api.getResource<User>("users",  this.diploma!.teacher)
+      api.getResource<User>('users',  this.diploma!.teacher)
       .then((response) => {
         this.teacher = response;
-      }).catch((err) => { throw new Error(err) });
+      }).catch((err) => { throw new Error(err); });
 
-      api.getResource<User>("users",  this.diploma!.student)
+      api.getResource<User>('users',  this.diploma!.student)
       .then((response) => {
         this.student = response;
-      }).catch((err) => { throw new Error(err) });
-    }
-  }
-})
+      }).catch((err) => { throw new Error(err); });
+    },
+  },
+});
 </script>

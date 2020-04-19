@@ -33,7 +33,7 @@ export default Vue.extend({
         { path: '/formacion', label: 'Formación', icon: 'animation' },
         { path: '/certificados', label: 'Certificados', icon: 'file-document-box' },
         // { path: '/pagos', label: 'Pagos', icon: 'account-box-multiple' },
-        // { path: '/contacto', label: 'Contacto', icon: 'phone' },
+        { path: '/contacto', label: 'Contacto', icon: 'phone' },
       ],
     };
   },

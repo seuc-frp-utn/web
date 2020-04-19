@@ -1,4 +1,4 @@
-export VUE_APP_API_IP="http://localhost:8000/1.0"
+export VUE_APP_API_IP="http://localhost:9001/1.0"
 export VUE_APP_UNIVERSITY_NAME="Universidad Tecnológica Nacional"
 export VUE_APP_FACULTY_NAME="Facultad Regional Paraná"
 export VUE_APP_SECRETARY_NAME="Secretaría de Extensión Universitaria y Cultura"

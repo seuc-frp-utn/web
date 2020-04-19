@@ -3,7 +3,7 @@
     title="Formación"
   >
     <v-row>
-      <v-col xs="12" md="6" lg="4" v-for="course in courses" :key="course.id">
+      <v-col xs="12" sm="6" md="4" lg="3" v-for="course in courses" :key="course.id">
         <u-course-card :course="course"></u-course-card>
       </v-col>
     </v-row>
